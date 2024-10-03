@@ -1,3 +1,3 @@
-# development
+# Personal
 
-- this repository is where my projects involving development live
+- This repository is a collection of my personal projects.
