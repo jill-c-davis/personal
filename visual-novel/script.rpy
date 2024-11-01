@@ -1307,7 +1307,7 @@ library_day_4:
 
 label cincere_reflection_4:
 
-    "I promised a friend I'd go to her film"
+    "I promised a friend I'd go to her short film premier"
     jump day_4_end
 
 label ame_reflection_4:
@@ -1337,6 +1337,7 @@ label day_4_end:
 # Final Day -------------------------------------------------------------------------------------------------------------------------------------------------------------
 label final_day: 
 
+    pass # Want to continue the narrative here but change some plot elements including introduce Faith (Ghost Girl)
     scene black
     with fade
     "You have Film Studies today, and with it a chance to see Cincere."
@@ -1358,10 +1359,10 @@ label final_day:
     "'I'm sure some of you noticed that our class is not as full today...'"
     "'And, no, it's not because it's Friday.'"
     "'It's because we have some excellent students this year showcasing their short films at the Student Film Festival later this afternoon.'"
-    "'It's at the Student Union, so be sure to show your support for your fellow classmates, like our very own Cincere, if you're available.'" 
+    "'It's at the Student Center, so be sure to show your support for your fellow classmates, like our very own Cincere, if you're available.'" 
     "'I implore you to participate in any of the student events taking place today to kick of Student Week.'"
     "'That's all for today. Class dismissed.'"
-    play music "shuffling.mp3"
+    play music disappointed noloop
     "With no class and no Cincere, you head back to your dorm"
 
     scene bg dorm
@@ -1374,10 +1375,11 @@ label final_day:
     scene bg messenger_app
     with fade
     "You reply with a simple 'yes' to the date with..."
-
     # If all ghost-related items are collected, activate the Faith route
+
     label check_ghost_route:
-    pass
+
+    pass # Continue the narrative here... 
     if inventory["Ghost Item 1"] and inventory["Ghost Item 2"] and inventory:  # Add all ghost items
         $ ghost_route_unlocked = True
         "You feel an eerie presence, and suddenly Ghost Girl appears..."
