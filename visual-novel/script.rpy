@@ -1,5 +1,7 @@
 ﻿# The script of the game goes in this file.
 
+### "The Time I Thought I Would Be Alone Forever but Got Ghosted by Three Cute Girls and a Ghoul Instead" ###
+
 # ---------------------------------------------------- Character Objects -------------------------------------------------------------------------------------------
 
 # Declare characters used by this game. The color argument colorizes the name of the character.
@@ -32,6 +34,8 @@ image bg messenger_app:
     "images/messenger_app.png"
 image bg student_center
     "images/student_center.png"
+image bg cemetery
+    "images/cemetery.png"
 
 # Characters
 
@@ -2502,24 +2506,244 @@ label runaway_ending:
 
 label ghostRoute:
 
-    pass # Need to make it so just the name "Ghost" in the Inventory screen is updated to Faith after this 
-    "As the story unfolds, you learn that her name was Faith, a girl whose love story met a tragic end."
-    
-    # if possible, change inventory screen to say Faith instead of Ghost
-    # Proceed with additional Faith story content here
-    
-    $ persistent.faith_collected = True
+    scene bg dorm
+    with fade
+    show ghost_sad
+    with dissolve
+    g "So you're the person Cincere thinks would be a good partner for me."
+    "The strange creature looks you up and down and sighs."
+    g "I guess beggars can't be choosers."
+    menu:
+        "Who are you?":
+            $ g_points += 1
+            jump ghost_begin
+        "What's that supposed to mean?":
+            jump ghost_begin
 
-    jump credits
+label ghost_begin:
+
+    g "Isn't that the question of the year?"
+    g "I thought maybe if I found a partner, I could learn more about who I am..."
+    g "But it looks like I might be stuck here forever."
+    menu:
+        "What happened to you?":
+            $ g_points += 2
+            g "It was a long time ago... I fell in love, but..."
+            g "That's all I remember."
+        "There must be a way to help you.": 
+            $ g_points += 2
+            g "Help? No one's been able to help me for years. What makes you think you can?"
+    p "I have a friend who seems like she knows a lot about you..."
+    p "And would probably want to meet you to be honest."
+    p "Why don't we go to the library? I bet she's there."
+    play music door noloop
+    show frog_neutral
+    with dossolve
+    f "I'm back..."
+    f "Who were you talking to just now?"
+    "You look around, but don't see anyone."
+    p "Um, noone, just talking to myself I guess."
+    f "Hm. Maybe you should get some sleep?"
+    p "Yeah."
+    "Frog drops their things and sits at their desk."
+    "They'll probably be up late studying again."
+    p "Hey, Frog?"
+    f "What?"
+    p "Thanks for looking out for me."
+    "Frog smiles at their desk."
+    f "Now I can tell you're not thinking straight!"
+    "You grumble and roll over in your bunkbed."
+    p "Good night."
+    f "Good night."
+    jump ghost_middle
+
+label ghost_middle:
+
+    scene black
+    with fade
+    "It's so unbearably cold that you clutch your covers to your chest."
+    "You're sweating profusely and the covers are wet with your stench."
+    show ghost_happy
+    with dissolve
+    "Ghost is kicking...her...legs over your bed while she watches Frog sleep."
+    g "Your roommate seems... nice."
+    show ghost_neutral
+    with dissolve
+    g "But it looks like you forgot about our plans."
+    g "Do you want to help me or not?"
+    menu:
+        "Let me try. I want to help.":
+            $ g_points += 3
+            g "Aw, you'd do that? For little old me?"
+        "I don't know if I can, but I'll do my best.":
+            $ g_points += 1
+            g "At least you're honest. That's more than I can say for most."
+    g "Maybe... maybe there's still hope."
+    p "Maybe you and I can both be free of these weights in our chests."
+    show ghost_happy
+    with dissolve
+    g "Let's go to the library."
+    jump ghost_end
+
+label ghost_end:
+
+    scene bg library
+    with fade 
+    "You're surprised the library is open so late, but you don't question it."
+    "You also don't question Muse's presence when you find her in her usual spot."
+    p "Um, hey Muse! Mind if I sit with you?"
+    "Muse looks at all of the empty tables surrounding her."
+    show muse_neutral
+    with dissolve
+    m "You certainly can, [p]."
+    "You take a seat besider her, while Ghost sits next to you."
+    "Muse doesn't seem able to see Ghost."
+    p "I'm here because there's something I want to ask you."
+    "Muse doesn't look up from her book."
+    m "Continue."
+    p "Um well..."
+    p "You don't have to believe me but..."
+    menu:
+        "I'm being haunted by Ghost right now.":
+            g "Haunted is a strong word."
+        "I have this um, friend, who wants to learn more about Ghost.":
+            m "I believe you."
+    p "So, do you have any like, references or anything?"
+    "Muse pushes her glasses up her nose."
+    m "Of course I have references!"
+    m "Now that you mention it..."
+    m "I was reviewing some of the old school yearbooks for the exhibit tomorrow and I noticed a woman who seemed to match Ghost's description..."
+    show muse_full
+    with dissolve
+    m "Wait here, I'll be right back!"
+    scene bg library
+    with fade
+    show ghost_sad
+    with dissolve
+    g "I guess you all call me 'Ghost?'"
+    p "..."
+    show muse_happy
+    with dissolve
+    m "I got it!"
+    m "The class yearbook from 1959."
+    m "Let's see, there was a memorial page for her but..."
+    m "She tragically passed away her senior year before she could graduate..."
+    m "Her name was..."
+    m "Faith."
+    $ persistent.faith_collected = True
     return
+
+label ghost_end_continued:
+
+    m "This is my best guess as to who Ghost is!"
+    m "With everything Cin's been talking about lately, it's got to be her."
+    "You look at Ghost who is phasing her hand in and out of books."
+    "Maybe 'Faith' doesn't ring a bell?"
+    "In any case, you thank Muse for her help."
+    p "Thanks, Muse. You're incredible."
+    "Muse blushes as she packs up her things."
+    m "I'm going to get some sleep."
+    m "Good night!"
+    p "Night!"
+
+    scene bg library
+    with fade
+    "You try to get Ghost's attention, but she doesn't seem to care."
+    show ghost_neutral
+    with dissolve
+    g "Huh, so my name was Faith."
+    jump credits
     
 
 # Faith Route ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-label faithRoute: 
+label faithRoute:
 
-    pass
-    jump credits
+    scene bg cemetery
+    with fade
+    show ghost_sad
+    with dissolve
+    g "There's something I need to tell you. Something I've never told anyone before."
+    menu:
+        "I'm listening.":
+            $ g_points += 1
+            jump faith_discovery
+        "This sounds serious.":
+            $ g_points += 1
+            jump faith_discovery
+
+label faith_discovery:
+
+    g "I was... different. In a way that scared him. We were so close to sharing something beautiful, but when he found out, he... he killed me."
+    "The weight of her words hangs heavy in the air." 
+    menu:
+        "What do you mean?":
+            $ g_points += 2
+            jump faith_revelation
+        "That's horrible...":
+            jump faith_revelation
+
+label faith_revelation:
+
+    g "I was born in 1959. Back then, being different wasn't something people could understand, let alone accept."
+    g "I was so excited... to share myself fully. But he couldn't handle the truth."
+    "Her eyes glisten with unspoken sorrow."
+    g "And now, I'm stuck here, searching for someone who can help me move on."
+    menu:
+        "Faith... I need to tell you something too.":
+            $ mc_trans = True
+            jump mc_reflection
+        "You don't have to do this alone.":
+            $ g_points += 2
+            jump mc_reflection
+
+label mc_reflection:
+    "You take a deep breath, summoning the courage to share your truth."
+    p "I'm transgender. Sometimes... I wish I were cisgender. Life would be so much easier."
+    p "But I've learned to have faith in the people who love me. They love me for who I am, not what I am."
+    "Faith listens intently, her expression softening."
+    g "You're brave to share that with me. Thank you."
+    jump support_system
+
+label support_system:
+
+    scene bg dorm
+    with fade
+    "Later, you gather your friends—Frog, Cincere, Muse, and Ame."
+    mc "There's something I need to tell all of you."
+    menu:
+        "Tell them the truth.": 
+            $ friends_support = True
+            jump supportive_friends
+        "Stay silent.":
+            jump silent_end
+
+label supportive_friends:
+
+    mc "I'm transgender. I wanted you all to know because... I trust you."
+    f "Thanks for sharing that with us. We're here for you, no matter what."
+    c "Absolutely. You're our friend, and we love you."
+    m "You're amazing just the way you are."
+    a "We've got your back, always."
+    "Their words fill you with a warmth you didn't know you needed."
+    jump faith_conclusion
+
+label faith_conclusion:
+
+    scene bg cemetery
+    with fade
+    show ghost_smile
+    with dissolve
+    "Faith appears, her form shimmering with light."
+    g "You've given me something I thought I'd lost forever... hope."
+    g "Thank you. For everything."
+    "Before your eyes, Faith's spirit is purified, her soul finally at peace."
+    return
+
+label silent_end:
+
+    "You decide not to share, the moment passing quietly."
+    return
 
 # Credits ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
