@@ -2732,7 +2732,7 @@ label faith_conclusion:
 
     scene bg cemetery
     with fade
-    show ghost_smile
+    show ghost_normal
     with dissolve
     "Faith appears, her form shimmering with light."
     g "You've given me something I thought I'd lost forever... hope."
