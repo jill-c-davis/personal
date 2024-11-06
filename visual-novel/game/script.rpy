@@ -205,7 +205,7 @@ define audio.stomach_growl = "music/stomach_growl.mp3"
 define audio.ticking = "music/ticking.mp3"
 define audio.texting = "music/texting.mp3"
 define audio.ping = "music/ping.mp3"
-define audio.applause = "music/applause.mp3"
+define audio.applause = "audio/applause.mp3"
 #  ---------------------------------------------------- Inventory ------------------------------------------------------------------------------------------------
 
 # Define the inventory as a dictionary to store items
