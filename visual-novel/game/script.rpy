@@ -182,24 +182,24 @@ image faith:
 
 # Music
 
-define audio.moon1 = "music/moonlight_sonata_lofi_pt1.mp3" # frog menu theme
-define audio.moon2 = "music/moonlight_sonata_lofi_pt2.mp3" # cincere menu theme
-define audio.moon3 = "music/moonlight_sonata_lofi_pt3.mp3" # ame menu theme
-define audio.moon4 = "music/moonlight_sonata_lofi_pt4.mp3" # muse menu theme
-define audio.moon5 = "music/moonlight_sonata_lofi_pt5.mp3" # ghost menu theme
-define audio.moon6 = "music/moonlight_sonata_lofi_pt6.mp3" # faith menu theme
+define audio.moon1 = "audio/menu1.mp3" # frog menu theme
+define audio.moon2 = "audio/menu2.mp3" # cincere menu theme
+define audio.moon3 = "audio/menu3.mp3" # ame menu theme
+define audio.moon4 = "audio/menu4.mp3" # muse menu theme
+define audio.moon5 = "audio/menu5.mp3" # ghost menu theme
+define audio.moon6 = "audio/menu6.mp3" # faith menu theme
 
 
 # SFX
 
-define audio.birds = "music/birds.mp3"
-define audio.door = "music/door.mp3"
-define audio.startled = "music/startled.mp3"
-define audio.notebook_tear = "music/notebook_tear.mp3"
-define audio.notebook_crumple = "music/notebook_crumple.mp3"
-define audio.pensive = "music/pensive.mp3"
+define audio.birds = "audio/birds.mp3"
+define audio.door = "audio/door.mp3"
+define audio.startled = "audio/startled.mp3"
+define audio.notebook_tear = "audio/notebook_tear.mp3"
+define audio.notebook_crumple = "audio/notebook_crumple.mp3"
+define audio.pensive = "audio/pensive.mp3"
 define audio.chatter = "music/chatter.mp3"
-define audio.success = "music/success.mp3"
+define audio.success = "audio/success.mp3"
 define audio.disappointed = "music/disappointed.mp3"
 define audio.stomach_growl = "music/stomach_growl.mp3"
 define audio.ticking = "music/ticking.mp3"
