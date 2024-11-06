@@ -187,7 +187,7 @@ define audio.moon2 = "audio/menu2.mp3" # cincere menu theme
 define audio.moon3 = "audio/menu3.mp3" # ame menu theme
 define audio.moon4 = "audio/menu4.mp3" # muse menu theme
 define audio.moon5 = "audio/menu5.mp3" # ghost menu theme
-define audio.moon6 = "audio/menu6.mp3" # faith menu theme
+define audio.moon6 = "audio/menu6.mp3" # credits theme
 
 
 # SFX
