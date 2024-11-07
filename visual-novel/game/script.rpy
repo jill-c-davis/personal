@@ -198,7 +198,7 @@ define audio.startled = "audio/startled.mp3"
 define audio.notebook_tear = "audio/notebook_tear.mp3"
 define audio.notebook_crumple = "audio/notebook_crumple.mp3"
 define audio.pensive = "audio/pensive.mp3"
-define audio.chatter = "music/chatter.mp3"
+define audio.chatter_spooky = "audio/chatter_spooky.mp3"
 define audio.success = "audio/success.mp3"
 define audio.disappointed = "music/disappointed.mp3"
 define audio.stomach_growl = "music/stomach_growl.mp3"
@@ -510,7 +510,7 @@ label library:
     scene bg library
     with fade
     "The entire library is full of students this afternoon"
-    play music chatter
+    play music chatter_spooky
     "You look around and notice the girl at the table nearest you has moved her backpack from the seat. She's moving her things around to make room."
     p "She must have noticed my vulturing..."
     p "My winning streak of first impressions is going strong. 
@@ -747,7 +747,7 @@ label cafe_day_2:
 
     scene bg cafe
     with fade
-    play music chatter noloop
+    play music chatter_spooky noloop
     "You order an apple turnover with a simple latte but..."
     "...You forgot to ask for dairy-free milk."
     "You make to cancel your order when the beautiful barista from yesterday - Ame - appears."
