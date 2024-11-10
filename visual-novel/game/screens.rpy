@@ -1554,8 +1554,7 @@ screen dress_up():
             # Confirm button to lock in choices
             textbutton "Confirm Outfit" action Return()
 
-
-## Inventory screen ###############################################################
+## Dress-up screen ###############################################################
 
 screen inventory_screen():
     tag menu
@@ -1568,23 +1567,33 @@ screen inventory_screen():
             hbox:
                 spacing 10
                 for item in items:
-                    if item:
-                        imagebutton idle item[2] action Show("item_detail", item=item)
+                    if item:  # Only show items that are not None
+                        imagebutton idle item["image"] action Show("item_detail", item=item)
+                    else:
+                        imagebutton idle "gui/empty_slot.png"  # Show empty slot if item is None
 
     textbutton "Return" action Return()
 
 ## Item Detail Screen ###############################################################
+
 screen item_detail(item):
-    modal True
-    frame:
-        xalign 0.5
-        yalign 0.5
-        padding 20
-        vbox:
-            text "Item: " + item[0]
-            add item[2]  # Display item image
-            text "Description: " + item[1]
-            textbutton "Close" action Hide("item_detail")
+    window:
+        xalign 0.7
+        yalign 0.2
+        background "#0008"
+        xsize 630
+        ysize 650
+        # Create a horizontal box to place the image and the details side by side
+        hbox:
+            # First item is the image on the left
+            add item["image"] xsize 150 ysize 150
+            vbox:
+                # Display the name on top
+                text item["name"] size 24
+                # Display the description below
+                text item["description"] size 18
+        textbutton "Close" action Hide("item_detail")
+
 
 ## Romance Points Screen ###############################################################
 

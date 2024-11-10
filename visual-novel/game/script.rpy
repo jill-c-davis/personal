@@ -142,41 +142,6 @@ image manager_neutral:
 image professor_neutral:
     "images/professor.png"
 
-# Collectibles 
-
-# Ame
-image strawberry_roll_cake:
-    "images/strawberry_roll_cake.png"
-image checkerboard_cookies:
-    "images/checkerboard_cookies.png"
-image pudding:
-    "images/pudding.png"
-
-# Cincere 
-image godzilla:
-    "images/items/godzilla.png"
-image dos_monjes:
-    "images/dos_monjes.png"
-image handmaiden:
-    "images/handmaiden.png"
-
-# Muse
-image sense:
-    "images/sense.png"
-image dracula:
-    "images/dracula.png"
-image tell_tale_heart:
-    "images/tell_tale_heart.png"
-
-# Ghost
-image love_letter:
-    "images/love_letter.png"
-image locket:
-    "images/locket.png"
-image class_ring:
-    "images/class_ring.png"
-image faith:
-    "images/faith.png"
 
 #  ---------------------------------------------------- Audio ----------------------------------------------------------------------------------------------------
 
@@ -212,24 +177,24 @@ define audio.applause = "audio/applause.mp3"
 
 default inventory = {
     "Ame" : [
-        "Strawberry Roll Cake" if persistent.strawberry_roll_cake_collected else None,
-        "Checkerboard Cookies" if persistent.checkerboard_cookies_collected else None,
-        "Pudding" if persistent.pudding_collected else None
+        strawberry_roll_cake if persistent.strawberry_roll_cake_collected else None,
+        checkerboard_cookies if persistent.checkerboard_cookies_collected else None,
+        pudding if persistent.pudding_collected else None
      ],
     "Cincere" : [
-        "Godzilla (1)" if persistent.godzilla_collected else None, 
-        "Dos Monjes (954)" if persistent.dos_monjes_collected else None, 
-        "The Handmaiden (2016)" if persistent.handmaiden_collected else None
+        godzilla if persistent.godzilla_collected else None, 
+        dos_monjes if persistent.dos_monjes_collected else None, 
+        handmaiden if persistent.handmaiden_collected else None
         ],
     "Muse" : [
-        "Sense and Sensibility (1811)" if persistent.sense_collected else None, 
-        "Dracula (1897)" if persistent.dracula_collected else None, 
-        "The Tell-Tale Heart (1843)" if persistent.tell_tale_heart_collected else None
+        sense if persistent.sense_collected else None, 
+        dracula if persistent.dracula_collected else None, 
+        tell_tale_heart if persistent.tell_tale_heart_collected else None
         ],
     "Ghost" : [
-        "Love Letter" if persistent.love_letter_collected else None, 
-        "Locket" if persistent.locket_collected else None, 
-        "Class Ring" if persistent.class_ring_collected else None
+        love_letter if persistent.love_letter_collected else None, 
+        locket if persistent.locket_collected else None, 
+        class_ring if persistent.class_ring_collected else None
         ],
 }
 
@@ -239,7 +204,7 @@ default inventory = {
 define strawberry_roll_cake = {
     "name":"Strawberry Roll Cake",
     "description":"A complicated looking recipe for a rolled up strawberry and lemon cake. It smells like fresh lemons.",
-    "image" :"strawberry_roll_cake.png"
+    "image" : "strawberry_roll_cake.png"
 }
 define checkerboard_cookies = {
     "name" : "Checkerboard Cookies",
@@ -398,15 +363,11 @@ label classroom:
     menu:
         "Read the paper.":
             $ g_points += 1
-            jump find_love_letter
+            $ persistent.love_letter_collected = True
+            $ inventory["Ghost"][0] = love_letter
+            call screen inventory_screen # Display updated inventory
         "Leave the paper alone.":
             jump continue_to_class
-
-label find_love_letter:
-    $ persistent.love_letter_collected = True
-    $ inventory["Ghost"][0] = "Love Letter"
-    call screen inventory_screen # Display updated inventory
-    jump continue_to_class
 
 label continue_to_class:
     "The projector whirs as your professor prepares to start class."
@@ -736,7 +697,7 @@ label comfort:
     c "Here, I made these as handouts, but you can have one because I like you."
     "Your heart skips a beat as she hands you a piece of paper - a movie poster?"
     $ persistent.godzilla_collected = True
-    $ inventory["Cincere"][0] = "Godzilla"
+    # $ inventory["Cincere"][0] = "Godzilla"
     call screen inventory_screen # Display updated inventory
     jump cafe_continue
 
@@ -826,7 +787,7 @@ label recipe_1:
     a "It's one of my own personal recipes."
     "You try not to squint as she positively beams at you."
     $ persistent.strawberry_roll_cake_collected = True
-    $ inventory["Ame"][0] = "Strawberry Roll Cake"
+    # $ inventory["Ame"][0] = "Strawberry Roll Cake"
     call screen inventory_screen # Display updated inventory
     jump cafe_end
 
@@ -911,7 +872,7 @@ label find_book_1:
     "She starts rummaging in her backpack."
     m "Here, I actually have a copy of it if you want to borrow it."
     $ persistent.tell_tale_heart_collected = True
-    $ inventory["Muse"][0] = "Tell-Tale Heart"
+    # $ inventory["Muse"][0] = "Tell-Tale Heart"
     call screen inventory_screen # Display updated inventory
     jump cafe_end
 
@@ -1053,9 +1014,13 @@ label find_locket:
     menu:
         "Pick it up.":
             $ persistent.locket_collected = True
-            $ inventory["Ghost"][1] = "Locket"
+            # $ inventory["Ghost"][1] = "Locket"
             call screen inventory_screen # Display updated inventory
+            jump classroom_day_3
         "You don't recognize it, but you pocket it and make a mental note to give it to Cincere.":
+            $ persistent.locket_collected = True
+            # $ inventory["Ghost"][1] = "Locket"
+            call screen inventory_screen # Display updated inventory
             jump classroom_day_3
 
 label classroom_day_3:
@@ -1094,7 +1059,7 @@ label find_movie_3:
     c "I've been carrying this with me out of spite, but, here."
     c "This is the film Old Fart didn't appreciate my analysis of."
     $ persistent.handmaiden_collected = True
-    $ inventory["Cincere"][2] = "The Handmaiden (2016)"
+    # $ inventory["Cincere"][2] = "The Handmaiden (2016)"
     call screen inventory_screen # Display updated inventory
     c "It'll change your life."
     jump classroom_day_3_end
@@ -1135,7 +1100,7 @@ label find_book_2:
     m "Oh, it's my favorite book!"
     m "Actually, I have a copy if you want to borrow it..."
     $ persistent.sense_collected = True
-    $ inventory["Muse"][0] = "Sense and Sensibility (1811)"
+    # $ inventory["Muse"][0] = "Sense and Sensibility (1811)"
     call screen inventory_screen # Display updated inventory
     "You feel a little heavier."
     jump library_continue
@@ -1230,7 +1195,7 @@ label find_recipe_2:
     "You can smell coffee on her breath."
     a "Actually, here:"
     $ persistent.checkerboard_cookies_collected = True
-    $ inventory["Ame"][1] = "Checkerboard Cookies"
+    # $ inventory["Ame"][1] = "Checkerboard Cookies"
     call screen inventory_screen # Display updated inventory
     a "I tried this recipe out for checkerboard cookies, but..."
     a "There's no way I'm going to make them again."
@@ -1367,7 +1332,7 @@ label classroom_day_4:
     "It's a bit chillier in here than usual."
     "You notice a movie poster near Cincere's usualy seat, so you take a peak."
     $ persistent.dos_monjes_collected = True
-    $ inventory["Cincere"][1] = "Dos Monjes (1934)"
+    # $ inventory["Cincere"][1] = "Dos Monjes (1934)"
     call screen inventory_screen # Display updated inventory
     "Cincere doesn't seem to be here, so you head to the library."
     jump library_day_4
@@ -1463,12 +1428,16 @@ label final_night:
     with fade
     "Back in your dorm, you open your messaging app"
     "And reply with a simple yes to the date with..."
-    # check ghost route 
-    if inventory.get("Love Letter") and inventory.get("Locket") and inventory.get("Class Ring"):
-        "You feel an eerie presence, and suddenly Ghost appears..."
+    
+    # Check ghost route with specified conditions
+    if (persistent.love_letter_collected 
+        and persistent.locket_collected 
+        and persistent.class_ring_collected 
+        and not persistent.faith_collected):
+        
         jump ghostRoute
     else:
-        jump standard_route  # If items aren't collected, go back to a default route
+        jump standard_route  # If conditions don't match, go to the default route
 
 label standard_route:
     # play music moon1
@@ -1538,7 +1507,7 @@ label find_class_ring:
     with dissolve
     c "Here, I found this in my desk..."
     $ persistent.class_ring_collected = True
-    $ inventory["Ghost"][2] = "Class Ring"
+    # $ inventory["Ghost"][2] = "Class Ring"
     call screen inventory_screen
     c "Honestly, it's been driving me crazy."
     c "Ever since I found it, I haven't been able to sleep."
@@ -1750,6 +1719,7 @@ label cincereRoute_good_ending:
     "Cincere puts her hand on your back."
     c "Always."
     "Your heart feels full, and tears start to well in your eyes."
+    return
 
 label cincereRoute_bad_ending:
 
@@ -1870,7 +1840,7 @@ label find_pudding:
     a "The boss has been letting me use some of the equipment here so..."
     a "I've been trying out this recipe..."
     $ persistent.pudding_collected = True
-    $ inventory["Ame"][2] = "Pudding"
+    # $ inventory["Ame"][2] = "Pudding"
     call screen inventory_screen
     "Ame hands you a creamy delight wrapped in plastic."
     p "Woah, thanks!"
@@ -2228,7 +2198,7 @@ label find_dracula:
     p "I have to admit, I'm feeling a little anxious."
     m "Here, this one always comforts me when I'm feeling scared."
     $ persistent.dracula_collected = True
-    $ inventory["Muse"][1] = "Dracula (1897)"
+    $ inventory["Muse"][1] = dracula
     call screen inventory_screen
     p "Isn't this a horror novel?"
     show muse neutral
@@ -2514,10 +2484,14 @@ label runaway_ending:
 
 # Ghost Route ---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+if persistent.faith_collected:
+    jump faithRoute
+
 label ghostRoute:
 
     scene bg dorm
     with fade
+    "You feel an eerie presence, and suddenly Ghost appears..."
     show ghost_sad
     with dissolve
     g "So you're the person Cincere thinks would be a good partner for me."
@@ -2548,7 +2522,7 @@ label ghost_begin:
     p "Why don't we go to the library? I bet she's there."
     # play music door noloop
     show frog_neutral
-    with dossolve
+    with dissolve
     f "I'm back..."
     f "Who were you talking to just now?"
     "You look around, but don't see anyone."
